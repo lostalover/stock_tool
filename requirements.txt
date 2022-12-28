@@ -1,3 +1,6 @@
 requests
 flake8
 flask
+pandas_datareader
+yfinance
+retrieve

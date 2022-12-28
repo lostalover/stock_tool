@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to Stock Tool {% endblock %}</h1>
-    <h2>Samsung Electronics</h2>
+    <h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
     {% for post in posts %}
-        <!-- <a href="#"> -->
-        <!-- <h2>{{ post['title'] }}</h2> -->
-        <h4>{{post[0]}} {{post[1]}} {{post[2]}} {{post[3]}} {{post[4]}} {{post[5]}} {{post[6]}} </h4>
-        <!-- </a> -->
-        <!-- <h3>{{ post['created'] }}</h3> -->
-        <!-- <h3>{post[1]}</h3> -->
+        <a href="{{ url_for('post', post_id=post['id']) }}">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <a href="{{ url_for('edit', id=post['id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
         <hr>
     {% endfor %}
 {% endblock %}
