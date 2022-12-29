@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Welcome to Stock Tool {% endblock %}</h1>
-    <h2>Samsung Electronics</h2>
-    <table>
-        {% for post in posts %}
-            <tr>
-                {% for val in post %}
-                    <td>{{val}}</td>
-                {% endfor %}
-            </tr>
+<h1>{% block title %} Welcome to Stock Tool {% endblock %}</h1>
+<h2>Samsung Electronics</h2>
+<table>
+    {% for post in posts %}
+    <tr>
+        {% for val in post %}
+        <td>{{val}}</td>
         {% endfor %}
-      </table>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

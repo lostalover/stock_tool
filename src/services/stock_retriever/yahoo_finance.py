@@ -12,7 +12,3 @@ class YahooStock(IStockRetriever):
         stock = yf.Ticker(ticker=ticker)
         result = stock.history(start=start_time, end=end_time)
         return result
-
-
-temp = YahooStock().get_basic_info('005930.KS')
-print(temp)
