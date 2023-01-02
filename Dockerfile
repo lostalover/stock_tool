@@ -18,7 +18,9 @@ RUN pip install -r requirements.txt
 RUN apt update -y
 
 ENV FLASK_APP ./src/app.py
+# Devlopment Mode
 ENV FLASK_DEBUG 1
+# Localhost
 ENV FLASK_RUN_HOST 127.0.0.1
 
 # ENV LC_ALL en_US
