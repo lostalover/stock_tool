@@ -3,3 +3,5 @@ flake8
 pandas_datareader
 yfinance
 retrieve
+pytest
+pytest-cov
