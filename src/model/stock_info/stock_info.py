@@ -1,10 +1,9 @@
-from typing import List
-from src.model.stock_info.basic_info import BasicInfo
+from pandas import DataFrame
 
 
 class StockInfo:
     def __init__(self,
                  ticker: str,
-                 record: List[BasicInfo] = []):
+                 record: DataFrame = []):
         self.ticker = ticker
         self.record = record

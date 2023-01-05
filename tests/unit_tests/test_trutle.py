@@ -1,16 +1,15 @@
 import unittest
 import csv
-from typing import List
+import pandas
 from src.services.turtle_algorithm.turtle import Turtle
-from src.model.stock_info.basic_info import BasicInfo
 
 
 class TestTurtle(unittest.TestCase):
     def setUp(self):
         self.turtle = Turtle()
-        self.yesterday_record = BasicInfo(512, 512.5, 511.25, 516.5)
-        self.today_record = BasicInfo(517.0, 524.0, 513.0, 521.5)
         self.history = self.__get_stock_history()
+        self.yesterday_record = self.history.iloc[0]
+        self.today_record = self.history.iloc[1]
 
     def test_calculate_TR1(self):
         result = self.turtle.calculate_TR1(self.today_record)
@@ -37,12 +36,13 @@ class TestTurtle(unittest.TestCase):
         expected_result = 11.9375
         assert result == expected_result
 
-    def __get_stock_history(self) -> List[BasicInfo]:
-        result = []
+    def __get_stock_history(self) -> pandas.DataFrame:
+        record = []
         f = open('/app/tests/test_data/history_data.csv', 'r', encoding='utf-8')
         rdr = csv.reader(f)
         for line in rdr:
             print(line)
-            result.append(BasicInfo(*line))
+            record.append([float(val) for val in line])
         f.close()
-        return result
+        history = pandas.DataFrame(record, columns=['open_price', 'high_price', 'low_price', 'close_price'])
+        return history
