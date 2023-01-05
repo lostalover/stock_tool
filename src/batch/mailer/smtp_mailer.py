@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 class Host(Enum):
     GOOGLE = ("smtp.gmail.com", 587)
     LIVE = ("smtp.live.com", 587)
+    OUTLOOK = ("smtp.office365.com", 587)
 
 
 class SmtpMailer():

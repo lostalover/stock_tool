@@ -4,7 +4,7 @@ from src.batch.mailer.smtp_mailer import SmtpMailer, Host
 
 class TestMailer(unittest.TestCase):
     def setUp(self):
-        self.mailer = SmtpMailer(Host.GOOGLE, "seungminyi95@gmail.com", "rrcbtegenmfxonko")
+        self.mailer = SmtpMailer(Host.OUTLOOK, "rabbit_trader@outlook.com", "foqltxmfpdlej1!@")
 
     def test_connect(self):
         is_success1 = self.mailer.connect()
@@ -13,7 +13,7 @@ class TestMailer(unittest.TestCase):
         self.assertFalse(is_success2)
 
     def test_send(self):
-        success = self.mailer.send("seungminyi95@gmail.com", "title", "body")
+        success = self.mailer.send("rabbit_trader@outlook.com", "title", "message body")
         self.assertTrue(success)
 
 
