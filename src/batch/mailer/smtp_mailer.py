@@ -1,23 +1,22 @@
-from enum import Enum
+from collections import namedtuple
 import smtplib
 from email.mime.text import MIMEText
 
 
-class Host(Enum):
-    GOOGLE = ("smtp.gmail.com", 587)
-    LIVE = ("smtp.live.com", 587)
-    OUTLOOK = ("smtp.office365.com", 587)
+class SmtpReportPublisher():
+    _END_POINT = namedtuple("EndPoint", "host port")
+    GOOGLE = _END_POINT("smtp.gmail.com", 587)
+    LIVE = _END_POINT("smtp.live.com", 587)
+    OUTLOOK = _END_POINT("smtp.office365.com", 587)
 
-
-class SmtpMailer():
-    def __init__(self, host: Host, username: str, password: str = ''):
+    def __init__(self, end_point: _END_POINT, username: str, password: str):
         self.smtp = None
-        self.host = host.value[0]
-        self.port = host.value[1]
+        self.host = end_point.host
+        self.port = end_point.port
         self.username = username
         self.password = password
 
-    def connect(self) -> bool:
+    def _connect(self) -> bool:
         if self.smtp:
             return False
         self.smtp = smtplib.SMTP(self.host, self.port)
@@ -32,7 +31,7 @@ class SmtpMailer():
         msg['To'] = to_addr
         msg['From'] = self.username
         if self.smtp is None:
-            self.connect()
+            self._connect()
         from_addr = self.username
         self.smtp.sendmail(from_addr, to_addr, msg.as_string())
         return True
