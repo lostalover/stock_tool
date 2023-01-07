@@ -11,7 +11,7 @@ class Turtle:
         list_atr = []
         len_history = len(history)
         if len_history <= self.ATR_size:
-            assert f'need longer history for ATR(20), current len is {len_history}'
+            assert f'history should be {self.ATR_size} days or longer, given is {len_history} days'
         for i in range(len_history - self.ATR_size, len_history):
             list_atr.append(self.calculate_TR(history.iloc[i-1], history.iloc[i]))
         return sum(list_atr)/self.ATR_size
