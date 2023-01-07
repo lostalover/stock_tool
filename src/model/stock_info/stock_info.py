@@ -1,6 +1,7 @@
 from pandas import DataFrame
 
 
+# Placeholder report model
 class StockInfo:
     def __init__(self,
                  ticker: str,

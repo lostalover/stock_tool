@@ -9,10 +9,9 @@ class Turtle:
 
     def calculate_ATR(self, history: DataFrame) -> float:
         list_atr = []
-        len_history = len(history)
-        if len_history <= self.ATR_size:
-            assert f'history should be {self.ATR_size} days or longer, given is {len_history} days'
-        for i in range(len_history - self.ATR_size, len_history):
+        if len(history) <= self.ATR_size:
+            assert f'history should be {self.ATR_size} days or longer, given is {len(history)} days'
+        for i in range(len(history) - self.ATR_size, len(history)):
             list_atr.append(self.calculate_TR(history.iloc[i-1], history.iloc[i]))
         return sum(list_atr)/self.ATR_size
 
