@@ -21,8 +21,7 @@
 		"ms-python.python@2022.8.1",
 		"ms-python.vscode-pylance",
 		"rtg.py-snippets",
-		"eamodio.gitlens",
-		"samuelcolvin.jinjahtml"
+		"eamodio.gitlens"
 	],
     // "postCreateCommand": "pip install -U setuptools -e .",
     "containerEnv": {

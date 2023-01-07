@@ -1,6 +1,4 @@
 {
-    "emmet.includeLanguages": {"jinja-html": "html"},
-    "files.associations": { "*.html": "jinja-html" },
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
     "python.testing.pytestArgs": [
@@ -11,6 +9,5 @@
         "--max-line-length=120",
         "--filename=*.py",
     ],
-    "python.testing.pytestEnabled": true,
-    "python.analysis.typeCheckingMode": "basic"
+    "python.testing.pytestEnabled": true
 }
