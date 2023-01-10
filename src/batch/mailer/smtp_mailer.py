@@ -26,7 +26,7 @@ class SmtpReportPublisher():
         return True
 
     def send(self, to_addr: str, title: str, body: str) -> bool:
-        msg = MIMEText(body.encode('utf-8'), 'html', 'utf-8')
+        msg = MIMEText(body)
         msg['Subject'] = title
         msg['To'] = to_addr
         msg['From'] = self.username

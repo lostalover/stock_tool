@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 from src.batch.mailer.smtp_mailer import SmtpReportPublisher
 
 
@@ -15,9 +16,15 @@ class TestMailer(unittest.TestCase):
         self.assertFalse(is_success2)
 
     def test_send(self):
-        success = self.mailer.send("rabbit_trader@outlook.com", "title", "message body")
-        self.assertTrue(success)
+        with patch("smtplib.SMTP") as smtp:
+            instance = smtp.return_value
 
+            to_address = "rabbit_trader@outlook.com"
+            success = self.mailer.send(to_address, "title", "message body")
 
-if __name__ == '__main__':
-    unittest.main()
+            self.assertTrue(success)
+            self.assertTrue(instance.sendmail.called)
+            self.assertEqual(instance.sendmail.call_count, 1)
+            self.assertEqual(instance.sendmail.mock_calls[0][1][0],
+                             self.mailer.username)
+            self.assertEqual(instance.sendmail.mock_calls[0][1][1], to_address)
