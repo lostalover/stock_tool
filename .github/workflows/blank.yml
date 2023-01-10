@@ -19,7 +19,8 @@ jobs:
         run: |
           pip install -r requirements.txt
           pwd
-          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          PYTHONPATH=$PYTHONPATH:$(pwd) && export PYTHONPATH
+          echo $PYTHONPATH
 
       - name: Run flake8
         run: |
