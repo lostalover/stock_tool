@@ -31,6 +31,7 @@ jobs:
         run: |
           echo unittest start
           pwd
+          PYTHONPATH=$PYTHONPATH:$(pwd) && export PYTHONPATH
           echo $PYTHONPATH
           pytest
           echo unittest finished
