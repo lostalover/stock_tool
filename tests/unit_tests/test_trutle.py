@@ -1,6 +1,7 @@
 import unittest
 import csv
 import pandas
+import os
 from src.services.turtle_algorithm.turtle import Turtle
 
 
@@ -38,7 +39,9 @@ class TestTurtle(unittest.TestCase):
 
     def __get_stock_history(self) -> pandas.DataFrame:
         record = []
-        f = open('/app/tests/test_data/history_data.csv', 'r', encoding='utf-8')
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, '../test_data/history_data.csv')
+        f = open(filename, 'r', encoding='utf-8')
         rdr = csv.reader(f)
         for line in rdr:
             print(line)

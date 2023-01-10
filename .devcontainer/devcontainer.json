@@ -21,7 +21,8 @@
 		"ms-python.python@2022.8.1",
 		"ms-python.vscode-pylance",
 		"rtg.py-snippets",
-		"eamodio.gitlens"
+		"eamodio.gitlens",
+		"redhat.vscode-yaml"
 	],
     // "postCreateCommand": "pip install -U setuptools -e .",
     "containerEnv": {
