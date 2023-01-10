@@ -4,17 +4,28 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: install dependencies
+        run: |
+          pip install -r requirements.txt
+
       - name: Run flake8
         run: |
           echo flake8 start
-          pip install flake8
           python3 -m flake8 ./src --max-line-length=120
           echo flake8 finished
       - name: Run unittest
         run: |
           echo unittest start
-          pip install pytest
           pytest
           echo unittest finished
