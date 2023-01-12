@@ -1,6 +1,7 @@
 requests
 flake8
 pandas_datareader
+pandas
 yfinance
 retrieve
 pytest

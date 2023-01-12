@@ -36,10 +36,26 @@ class TestTurtle(unittest.TestCase):
         expected_result = 11.9375
         assert result == expected_result
 
+    def test_S1_long_signal(self):
+        history = pandas.DataFrame([x for x in range(20)], columns=['high_price'])
+        self.assertTrue(self.turtle.is_S1_long(history))
+
+    def test_S1_short_signal(self):
+        history = pandas.DataFrame([x for x in reversed(range(10))], columns=['low_price'])
+        self.assertTrue(self.turtle.is_S1_short(history))
+    
+    def test_S2_long_signal(self):
+        history = pandas.DataFrame([x for x in range(55)], columns=['high_price'])
+        self.assertTrue(self.turtle.is_S2_long(history))
+
+    def test_S2_short_signal(self):
+        history = pandas.DataFrame([x for x in reversed(range(20))], columns=['low_price'])
+        self.assertTrue(self.turtle.is_S2_short(history))
+
     def __get_stock_history(self) -> pandas.DataFrame:
         record = []
         f = open('/app/tests/test_data/history_data.csv', 'r', encoding='utf-8')
-        rdr = csv.reader(f)
+        rdr = csv.reader(filter(lambda row: not row.startswith('#'), f))
         for line in rdr:
             print(line)
             record.append([float(val) for val in line])

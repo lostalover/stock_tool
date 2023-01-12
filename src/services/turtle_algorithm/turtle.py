@@ -1,5 +1,9 @@
 from pandas import DataFrame, Series
 
+S1_LONG_WINDOW_DAYS = 20
+S1_SHORT_WINDOW_DAYS = 10
+S2_LONG_WINDOW_DAYS = 55
+S2_SHORT_WINDOW_DAYS = 20
 
 class Turtle:
     def __init__(self,
@@ -29,3 +33,29 @@ class Turtle:
 
     def calculate_TR3(self, yesterday: Series, today: Series):
         return abs(yesterday.close_price - today.low_price)
+
+    def is_S1_long(self, history: DataFrame):
+        return self._is_long(history, S1_LONG_WINDOW_DAYS)
+    
+    def is_S1_short(self, history: DataFrame):
+        return self._is_short(history, S1_SHORT_WINDOW_DAYS)
+    
+    def is_S2_long(self, history: DataFrame):
+        return self._is_long(history, S2_LONG_WINDOW_DAYS)
+    
+    def is_S2_short(self, history: DataFrame):
+        return self._is_short(history, S2_SHORT_WINDOW_DAYS)
+    
+
+    def _is_long(self, history: DataFrame, window_days: int):
+        if len(history) < window_days:
+            raise ValueError(f'history must be longer than {window_days} days')
+        
+        return history.tail(window_days).high_price.idxmax() == window_days - 1
+        
+    
+    def _is_short(self, history: DataFrame, window_days: int):
+        if len(history) < window_days:
+            raise ValueError(f'history must be longer than {window_days} days')
+        
+        return history.tail(window_days).low_price.idxmin() == window_days - 1
